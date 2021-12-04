@@ -10,11 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.14",
     "i18next": "^21.5.4",
     "react": "17.0.2",
     "react-i18next": "^11.14.3",
     "react-native": "0.66.3",
-    "react-native-restart": "^0.0.22"
+    "react-native-localize": "^2.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
