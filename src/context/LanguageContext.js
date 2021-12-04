@@ -1,17 +1,31 @@
-import React, {createContext, useContext, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {I18nManager} from 'react-native';
+import RNRestart from 'react-native-restart';
 import App from '../App';
-import en from '../lang/en.json';
 import ar from '../lang/ar.json';
+import en from '../lang/en.json';
 
 const languageObj = {en, ar};
 
 export const LanguageContext = createContext();
 
 const LanguageProvider = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
-  const updateLanguage = React.useCallback(languageKey => {
+  useEffect(() => {
+    getCurrentLanguage();
+  }, [getCurrentLanguage]);
+
+  const getCurrentLanguage = React.useCallback(async () => {
+    setSelectedLanguage((await AsyncStorage.getItem('@currentLang')) ?? 'en');
+  }, []);
+
+  const updateLanguage = React.useCallback(async languageKey => {
     setSelectedLanguage(languageKey);
+    I18nManager.forceRTL(languageKey === 'ar');
+    await AsyncStorage.setItem('@currentLang', languageKey);
+    RNRestart.Restart();
   }, []);
 
   const value = [
