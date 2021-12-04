@@ -8,6 +8,9 @@ import en from '../lang/en.json';
 const languageDetector = {
   type: 'languageDetector',
   async: true,
+  init: (_services, _detectorOptions, _i18nextOptions) => {
+    /* use services and options */
+  },
   detect: callback => {
     AsyncStorage.getItem('APP_LANG', (err, lng) => {
       if (err || !lng) {
