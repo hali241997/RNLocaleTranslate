@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
+import 'intl-pluralrules';
 import {initReactI18next} from 'react-i18next';
 import * as RNLocalize from 'react-native-localize';
 import ar from '../lang/ar.json';
