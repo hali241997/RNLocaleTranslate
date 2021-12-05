@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {I18nManager} from 'react-native';
-import RNRestart from 'react-native-restart';
 import App from '../App';
 import ar from '../lang/ar.json';
 import en from '../lang/en.json';
@@ -23,9 +21,7 @@ const LanguageProvider = () => {
 
   const updateLanguage = React.useCallback(async languageKey => {
     setSelectedLanguage(languageKey);
-    I18nManager.forceRTL(languageKey === 'ar');
     await AsyncStorage.setItem('@currentLang', languageKey);
-    RNRestart.Restart();
   }, []);
 
   const value = [

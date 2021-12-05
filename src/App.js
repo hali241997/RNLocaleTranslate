@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, I18nManager, SafeAreaView, Text} from 'react-native';
+import {Button, SafeAreaView, Text} from 'react-native';
 import {useTranslation} from './context/LanguageContext';
 
 const App = () => {
@@ -7,7 +7,13 @@ const App = () => {
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize: 22, textAlign: 'left'}}>{strings.hello}</Text>
+      <Text
+        style={{
+          fontSize: 22,
+          textAlign: currentLanguage === 'ar' ? 'right' : 'left',
+        }}>
+        {strings.hello}
+      </Text>
 
       <Button
         title="Change Language"
